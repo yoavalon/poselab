@@ -1,4 +1,5 @@
 ![PoseLab Logo](docs/poselab_logo.jpg)
+<img src="docs/poselab_logo.png" alt="PoseLab Logo" width="200"/>
 
 A colmap pose analysis, filter and visualization toolkit
 
