@@ -1,14 +1,14 @@
 from setuptools import setup
 
 setup(
-    name='posefilter',
+    name='poselab',
     version='0.1.0',    
     description='A colmap parser',
-    url='https://github.com/yoavalon/posefilter',
+    url='https://github.com/yoavalon/poselab',
     author='Yoav Alon',
     author_email='algoretics@gmail.com',
     license='BSD 2-clause',
-    packages=['posefilter'],
+    packages=['poselab'],
     install_requires=['numpy', 'tqdm', 'colorama'                    
                       ],
 

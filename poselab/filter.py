@@ -1,6 +1,6 @@
 import numpy as np 
 from tqdm import tqdm
-from posefilter.poseparser import read_model, write_model
+from poselab.poseparser import read_model, write_model
 from colorama import Fore
 
 def filter_features_around(input_path, export_path, point, distance) :
