@@ -3,6 +3,10 @@
 A colmap pose analysis, filter and visualization toolkit
 
 ```
+pip3 install poselab
+```
+
+```
 pip install poselab==0.1.0
 ```
 
