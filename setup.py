@@ -9,7 +9,7 @@ setup(
     author_email='algoretics@gmail.com',
     license='BSD 2-clause',
     packages=['posefilter'],
-    install_requires=['numpy', 'tqdm'                    
+    install_requires=['numpy', 'tqdm', 'colorama'                    
                       ],
 
     classifiers=[

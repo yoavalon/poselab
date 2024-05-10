@@ -1,8 +1,9 @@
 import numpy as np 
 from tqdm import tqdm
 from posefilter.poseparser import read_model, write_model
+from colorama import Fore
 
-def filter_features(input_path, export_path, point, distance) :
+def filter_features_around(input_path, export_path, point, distance) :
     """
     Filter all features around a point
     Inputs: 
@@ -15,13 +16,19 @@ def filter_features(input_path, export_path, point, distance) :
     """ 
 
     cameras, images, points3D = read_model(input_path)
+    print(f'{Fore.GREEN}Imported camera poses')
 
     clean_points_3d = {}
-    for i in tqdm(images) : 
-        pass 
+    for i in tqdm(points3D) : 
 
-        #TODO complete function
+        d_feat_cam = np.linalg.norm(np.array([tvec])- np.array([feature_3d]))
 
+        if d_feat_cam < d :
+            clean_points_3d[feat] = points3D[feat] 
+
+
+    write_model(cameras, images, clean_points_3d, export_path)
+    print(f'{Fore.GREEN}Saved model')
 
 def filter_distant_features(cameras, images, points3D, d) : 
     """
@@ -51,7 +58,13 @@ def filter_distant_features(cameras, images, points3D, d) :
 
     return cameras, images, clean_points_3d
 
-cameras, images, clean_points_3d = filter_distant_features(cameras, images, points3D, 6)
 
-write_model(cameras, images, clean_points_3d, export_path)
-print('done')
+def main():
+
+    #cameras, images, clean_points_3d = filter_distant_features(cameras, images, points3D, 6)
+    #write_model(cameras, images, clean_points_3d, export_path)
+    print('done')
+
+if __name__ == "__main__":
+    main()           
+
