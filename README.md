@@ -1,5 +1,5 @@
-# posefilter
-A colmap pose filter
+# PoseLab
+A colmap pose analysis, filter and visualization toolkit
 
 ```
 pip3 install posefilter
