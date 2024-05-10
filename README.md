@@ -11,3 +11,6 @@ https://packaging.python.org/en/latest/tutorials/packaging-projects/
 
 python3 -m pip install --upgrade build
 python3 -m build
+python3 -m twine upload --repository testpypi dist/*
+
+https://test.pypi.org/project/poselab/0.1.0/
