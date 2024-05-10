@@ -1,0 +1,18 @@
+[project]
+name = "poselab"
+version = "0.1.0"
+authors = [
+  { name="yoavalon", email="algoretics@gmail.com" },
+]
+description = "A colmap pose analysis, filter and visualization toolkit"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/yoavalon/poselab"
+Issues = "https://github.com/yoavalon/poselab/issues"
