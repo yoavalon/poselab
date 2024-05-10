@@ -1,7 +1,8 @@
 import numpy as np 
 from tqdm import tqdm
-from poselab.poseparser import read_model, write_model
+from poseparser import read_model, write_model
 from colorama import Fore
+import os 
 
 def filter_features_around(input_path, export_path, point, distance) :
     """
@@ -16,19 +17,23 @@ def filter_features_around(input_path, export_path, point, distance) :
     """ 
 
     cameras, images, points3D = read_model(input_path)
-    print(f'{Fore.GREEN}Imported camera poses')
+    print(f'{Fore.GREEN}Imported camera poses{Fore.RESET}')
 
     clean_points_3d = {}
-    for i in tqdm(points3D) : 
+    for feat in tqdm(points3D) : 
 
-        d_feat_cam = np.linalg.norm(np.array([tvec])- np.array([feature_3d]))
+        feature3d = points3D[feat].xyz
 
-        if d_feat_cam < d :
+        d_feat = np.linalg.norm(np.array(point)- np.array([feature3d]))
+
+        if d_feat < distance :
             clean_points_3d[feat] = points3D[feat] 
 
+    if not os.path.exists(export_path):
+        os.makedirs(export_path)
 
     write_model(cameras, images, clean_points_3d, export_path)
-    print(f'{Fore.GREEN}Saved model')
+    print(f'{Fore.GREEN}Saved model{Fore.RESET}')
 
 def filter_distant_features(cameras, images, points3D, d) : 
     """
@@ -63,7 +68,13 @@ def main():
 
     #cameras, images, clean_points_3d = filter_distant_features(cameras, images, points3D, 6)
     #write_model(cameras, images, clean_points_3d, export_path)
-    print('done')
+    #print('done')
+
+    input_path = '/home/algo/nerf/exp30/colmap/sparse/0'
+    export_path = '/home/algo/code/poselab/export'
+
+    filter_features_around(input_path, export_path, [0,0,0], 4)
+
 
 if __name__ == "__main__":
     main()           
