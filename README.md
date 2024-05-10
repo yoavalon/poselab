@@ -1,4 +1,5 @@
-# PoseLab
+![PoseLab Logo](docs/poselab_logo.jpg)
+
 A colmap pose analysis, filter and visualization toolkit
 
 ```
