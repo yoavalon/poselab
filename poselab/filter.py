@@ -125,8 +125,8 @@ def main():
     export_path = '/home/algo/code/poselab/export'
 
     #filter_features_around(input_path, export_path, [0,0,0], 4)
-    #filter_features_distance_camera(input_path, export_path, 4)
-    filter_by_densities(input_path, export_path)
+    filter_features_distance_camera(input_path, export_path, 2)
+    #filter_by_densities(input_path, export_path)
 
 if __name__ == "__main__":
     main()           
