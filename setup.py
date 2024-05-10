@@ -9,7 +9,7 @@ setup(
     author_email='algoretics@gmail.com',
     license='BSD 2-clause',
     packages=['poselab'],
-    install_requires=['numpy', 'tqdm', 'colorama'                    
+    install_requires=['numpy', 'tqdm', 'colorama', 'vedo'                    
                       ],
 
     classifiers=[

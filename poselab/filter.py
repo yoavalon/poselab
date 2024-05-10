@@ -35,13 +35,21 @@ def filter_features_around(input_path, export_path, point, distance) :
     write_model(cameras, images, clean_points_3d, export_path)
     print(f'{Fore.GREEN}Saved model{Fore.RESET}')
 
-def filter_distant_features(cameras, images, points3D, d) : 
+def filter_features_distance_camera(input_path, export_path, distance) : 
     """
     Filter features that are more than d units away from 
     any camera
 
-    Keep in mind that cameras can also be wrong!!
+    Inputs: 
+        input_path: Path of colmap binaries
+        export_path: Path to export filtered pose to. If input and export identical will be overwritten
+        d:     distance to filter around
+    Outputs:
+        Binaries in export path    
     """
+
+    cameras, images, points3D = read_model(input_path)
+    print(f'{Fore.GREEN}Imported camera poses{Fore.RESET}')
 
     clean_points_3d = {}
 
@@ -58,10 +66,15 @@ def filter_distant_features(cameras, images, points3D, d) :
 
             d_feat_cam = np.linalg.norm(np.array([tvec])- np.array([feature_3d]))
 
-            if d_feat_cam < d :
+            if d_feat_cam < distance :
                 clean_points_3d[feat] = points3D[feat] 
 
-    return cameras, images, clean_points_3d
+    if not os.path.exists(export_path):
+        os.makedirs(export_path)
+
+    write_model(cameras, images, clean_points_3d, export_path)
+    print(f'{Fore.GREEN}Saved model{Fore.RESET}')
+
 
 
 def main():
@@ -73,7 +86,8 @@ def main():
     input_path = '/home/algo/nerf/exp30/colmap/sparse/0'
     export_path = '/home/algo/code/poselab/export'
 
-    filter_features_around(input_path, export_path, [0,0,0], 4)
+    #filter_features_around(input_path, export_path, [0,0,0], 4)
+    filter_features_distance_camera(input_path, export_path, 4)
 
 
 if __name__ == "__main__":
