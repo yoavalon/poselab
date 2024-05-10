@@ -17,3 +17,18 @@ Possible names:
     ColmapPoseToolbox
     ColmapPoseLab
     PoseNavigator
+    PoseViz
+    PoseKit
+    PoseLab
+    ColViz
+    PoseScope
+    PoseView
+    PoseMap
+    PoseLite
+    PoseDash
+    ColDash
+    PoseX
+    PosePlus
+    PosePro
+    ColKit
+    PosePack
