@@ -9,8 +9,9 @@ def main():
     pose.describe()    
     pose.show()
     pose.filter_features_around([0,0,0], 3)
-    pose.show()
-    print('test')
+    pose.compute_feature_error()
+    #pose.show()
+    #print('test')
     #pose.save(export_path)
 
 if __name__ == "__main__":

@@ -6,12 +6,30 @@ A colmap pose analysis, filter and visualization toolkit
 pip3 install poselab
 ```
 
-```
-pip install poselab==0.1.0
-```
+# How to use: 
+
+Import pose: 
 
 ```
-pip install -i https://test.pypi.org/simple/ poselab==0.1.0
+from poselab import pose
+```
+
+Load the binaries:
+```
+input_path = '/home/algo/nerf/exp30/colmap/sparse/0'
+pose.load(input_path)
+```
+
+Describe the pose and show:
+```
+pose.describe()    
+pose.show()
+```
+
+Filter features around a point (0,0,0):
+```
+pose.filter_features_around([0,0,0], 3)
+pose.show()
 ```
 
 Using this for piping: 

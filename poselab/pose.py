@@ -198,6 +198,31 @@ class Pose() :
         for ind in tqdm(denInd) : 
             clean_points_3d[ind] = self.points3D[ind]   #BUG issue with indices still
 
+    def analyze_feature_errors(self): 
+        """
+        Feature error analysis
+        """
+
+    def compute_feature_error(self, visualize = True) : 
+        """
+        Compute the feature errors, and visualize the errors per camera (patch, not unified)
+        """
+
+        errors = np.array([self.points3D[i].error for i in self.points3D.keys()])
+
+        float_values = errors
+
+        if visualize : 
+            cmap = plt.get_cmap("coolwarm")
+            norm = plt.Normalize(min(float_values), 2) #max(float_values))
+            colors = [255*np.array(cmap(norm(value))) for value in float_values]
+            
+            points = np.array([self.points3D[i].xyz for i in self.points3D.keys()])
+            vpoints = vedo.Points(points, c = colors, r = 12, alpha = 0.6)
+
+            vedo.show(vpoints).close()
+
+
     # def compute_camera_feature_error(self, visualize = True) : 
     #     """
     #     Compute the feature errors, and visualize the errors per camera (patch, not unified)
@@ -252,8 +277,9 @@ def main():
     input_path = '/home/algo/nerf/exp30/colmap/sparse/0'
     export_path = '/home/algo/code/poselab/export'
 
-    # pose = Pose()
-    # pose.load(input_path)
+    pose = Pose()
+    pose.load(input_path)
+    pose.compute_feature_error()
     # pose.compute_camera_feature_error(visualize=True)    
     
 if __name__ == "__main__":
