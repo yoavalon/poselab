@@ -1,5 +1,6 @@
 from colorama import Fore
 from poselab.poseparser import read_model, write_model
+import matplotlib.pyplot as plt 
 import vedo
 from scipy.spatial import cKDTree
 from tqdm import tqdm
@@ -197,8 +198,64 @@ class Pose() :
         for ind in tqdm(denInd) : 
             clean_points_3d[ind] = self.points3D[ind]   #BUG issue with indices still
 
+    # def compute_camera_feature_error(self, visualize = True) : 
+    #     """
+    #     Compute the feature errors, and visualize the errors per camera (patch, not unified)
+    #     """
+
+    #     mean_errors = []
+    #     c_poses = []
+    #     for frame_id in self.cam_dict.keys() : 
+    #         patches = self.cam_dict[frame_id]
+            
+    #         errors = []
+    #         rel_poses = []
+    #         for i in patches : 
+
+    #             patch_pose = self.cam_poses[i]
+    #             rel_poses.append(patch_pose)
+
+    #             ids = self.images[i].point3D_ids
+    #             for id in ids : 
+    #                 if id != -1 :                     
+    #                     errors.append(self.points3D[id].error)
+            
+
+    #         rel_poses = np.array(rel_poses)
+    #         frame_mean = np.mean(rel_poses, 0)
+    #         c_poses.append(frame_mean)
+
+    #         errors = np.array(errors)
+    #         mean_errors.append(np.mean(errors))            
+        
+    #     c_poses = np.array(c_poses)
+    #     mean_errors = np.array(mean_errors)
+
+    #     if visualize : 
+    #         cmap = plt.get_cmap("coolwarm")
+
+    #         float_values = mean_errors
+    #         #float_values = np.clip(mean_errors, 0, 0.08)
+    #         norm = plt.Normalize(min(float_values), max(float_values))
+    #         colors = [255*np.array(cmap(norm(value))) for value in float_values]
+
+    #         cam_pc = vedo.Points(c_poses, c = colors, r = 10, alpha = 0.5)
+    #         vedo.show(cam_pc).close()
+
+    #     #return c_poses, mean_errors
+
+#Singleton
 pose = Pose()
 
-print("test")
+def main():
 
-#input_path = '/home/algo/nerf/exp30/colmap/sparse/0'
+    input_path = '/home/algo/nerf/exp30/colmap/sparse/0'
+    export_path = '/home/algo/code/poselab/export'
+
+    # pose = Pose()
+    # pose.load(input_path)
+    # pose.compute_camera_feature_error(visualize=True)    
+    
+if __name__ == "__main__":
+    main()           
+
