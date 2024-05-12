@@ -1,6 +1,6 @@
 import numpy as np 
 from tqdm import tqdm
-from poseparser import read_model, write_model
+from poselab.poseparser import read_model, write_model
 from scipy.spatial import cKDTree
 from colorama import Fore
 import os 

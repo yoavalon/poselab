@@ -481,7 +481,7 @@ def detect_model_format(path, ext):
         and os.path.isfile(os.path.join(path, "images" + ext))
         and os.path.isfile(os.path.join(path, "points3D" + ext))
     ):
-        print("Detected model format: '" + ext + "'")
+        #print("Detected model format: '" + ext + "'")
         return True
 
     return False
